@@ -1,0 +1,66 @@
+{
+  "name": "evil-svg",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Force Adverse",
+    "email": "code@forad.io",
+    "url": "https://forad.io"
+  },
+  "scripts": {
+    "build": "run-s build:*",
+    "build:clean": "run-p clean:lib clean:temp",
+    "build:lint": "run-s lint:prettier",
+    "build:esbuild": "node esbuild.js",
+    "build:obfuscate": "javascript-obfuscator temp/payload.js --config obfuscator.config.js",
+    "build:inject": "jiti src/build/images.ts",
+    "check:circular": "dpdm --ext ts --circular --output .meta/circular.json src",
+    "clean": "run-p clean:*",
+    "clean:dist": "rimraf:dist",
+    "clean:lib": "rimraf lib",
+    "clean:temp": "rimraf temp",
+    "commit": "commit",
+    "lint": "run-s lint:eslint:fix lint:prettier lint:sort",
+    "lint:eslint": "eslint --ext .ts,.vue ./src",
+    "lint:eslint:fix": "eslint --fix --ext .ts,.vue ./src",
+    "lint:prettier": "prettier --write ./src/**/*.{ts,vue}",
+    "lint:sort": "sort-package-json",
+    "preinstall": "npx only-allow pnpm",
+    "release": "run-s test build release:*",
+    "release:standard-version": "standard-version",
+    "test": "run-p test:*",
+    "upgrade": "ncu -u --packageFile package.json && run-s lint:sort"
+  },
+  "dependencies": {
+    "javascript-obfuscator": "^4.0.0",
+    "fs-extra": "^10.1.0",
+    "svgson": "^5.2.1",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "cross-env": "^7.0.3",
+    "@rushstack/eslint-config": "^2.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@types/fs-extra": "^9.0.13",
+    "@typescript-eslint/parser": "^5.23.0",
+    "dpdm": "^3.9.0",
+    "esbuild": "^0.14.39",
+    "markdown-eslint-parser": "^1.2.1",
+    "eslint": "^8.15.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "jiti": "^1.13.0",
+    "npm-check-updates": "^12.5.11",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "sort-package-json": "^1.57.0",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

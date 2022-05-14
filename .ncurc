@@ -1,0 +1,11 @@
+{
+  "upgrade": true,
+  "reject": [
+    "puppeteer-core",
+    "puppeteer",
+    "playwright",
+    "playwright-core",
+  ],
+  "loglevel": "error",
+  "errorLevel": 1,
+}

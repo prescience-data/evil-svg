@@ -1,0 +1,7 @@
+{
+  "ignores": [
+    "@types/node",
+    "@typescript-eslint/parser",
+    "eslint"
+  ]
+}
